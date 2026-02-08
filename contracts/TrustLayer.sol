@@ -17,7 +17,7 @@ contract TrustLayer {
         token = new RewardToken();
     }
 
-    /**
+    /**      
      * @dev Creates a new Campaign contract.
      * @param _title Title of the project.
      * @param _description Brief description.
