@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustLayer | Milestone-Based Crowdfunding</title>
+    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="ethers.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <header>
+            <div class="logo" onclick="navigateTo('home')">
+                <img src="favicon.png" alt="Logo" style="height: 32px; width: 32px;">
+                <span>TrustLayer</span>
+            </div>
+            <nav>
+                <a href="#" class="nav-link active" data-target="home">Home</a>
+                <a href="#" class="nav-link" data-target="home"
+                    onclick="document.getElementById('campaigns').scrollIntoView({ behavior: 'smooth' })">Campaigns</a>
+                <a href="#" class="nav-link" data-target="dashboard" style="display: none;">Dashboard</a>
+            </nav>
+            <button id="connect-wallet" class="btn btn-primary">Connect Wallet</button>
+        </header>
+
+
+        <main id="view-home" class="view-section active">
+            <section class="hero">
+                <h1>Milestone-Controlled <br> <span style="color: var(--primary)">Trustless Funding</span></h1>
+                <p style="font-size: 1.25rem; margin-top: 1rem;">
+                    Funds are locked in smart contracts and released only when the community approves project
+                    milestones.
+                </p>
+                <div style="margin-top: 2rem;">
+                    <button class="btn btn-primary" onclick="window.scrollTo({top: 600, behavior: 'smooth'})">Explore
+                        Campaigns</button>
+                    <button class="btn btn-outline" style="margin-left: 1rem;" onclick="showCreateModal()">Start a
+                        Campaign</button>
+                </div>
+            </section>
+
+            <section id="campaigns">
+                <h2 style="margin-bottom: 2rem;">Featured Campaigns</h2>
+                <div id="campaigns-grid" class="campaigns-grid">
+
+                </div>
+            </section>
+        </main>
+
+
+        <main id="view-project" class="view-section">
+            <div style="margin-bottom: 2rem;">
+                <button class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;"
+                    onclick="navigateTo('home')">← Back to Campaigns</button>
+            </div>
+
+
+
+            <div id="project-details-container" style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem;">
+
+                <p>Loading project details...</p>
+            </div>
+        </main>
+
+
+        <main id="view-dashboard" class="view-section">
+            <h1>Dashboard</h1>
+            <p>Welcome back, Creator.</p>
+
+            <div id="dashboard-content">
+                <p>Connect wallet to view your dashboard.</p>
+            </div>
+        </main>
+
+        <footer
+            style="margin-top: 5rem; padding: 2rem 0; border-top: 1px solid var(--card-border); text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+            &copy; 2026 TrustLayer. Powered by Ethereum.
+        </footer>
+    </div>
+
+
+    <div id="create-modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center;">
+        <div class="card"
+            style="width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; background: var(--bg-color);">
+            <h2 style="margin-bottom: 1.5rem;">Start Campaign</h2>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <input type="text" id="new-title" placeholder="Project Title"
+                    style="padding: 0.75rem; background: var(--bg-color); border: 1px solid var(--card-border); color: white; font-family: inherit;">
+                <textarea id="new-desc" placeholder="Description" rows="4"
+                    style="padding: 0.75rem; background: var(--bg-color); border: 1px solid var(--card-border); color: white; font-family: inherit;"></textarea>
+                <input type="number" id="new-goal" placeholder="Goal (ETH)"
+                    style="padding: 0.75rem; background: var(--bg-color); border: 1px solid var(--card-border); color: white; font-family: inherit;">
+                <input type="number" id="new-duration" placeholder="Duration (Days)"
+                    style="padding: 0.75rem; background: var(--bg-color); border: 1px solid var(--card-border); color: white; font-family: inherit;">
+            </div>
+
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                <button class="btn btn-primary" style="flex: 1;" onclick="createCampaign()">Create</button>
+                <button class="btn btn-outline" style="flex: 1;" onclick="hideCreateModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js?v=10"></script>
+</body>
+
+</html>

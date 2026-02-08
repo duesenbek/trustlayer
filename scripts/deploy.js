@@ -1,26 +1,34 @@
 const hre = require("hardhat");
 
 async function main() {
-  console.log("Starting deployment...");
+  console.log("Deploying TrustLayer Factory...");
 
-  const Token = await hre.ethers.getContractFactory("RewardToken");
-  const token = await Token.deploy();
-  await token.waitForDeployment();
-  const tokenAddress = await token.getAddress();
-  console.log("1. RewardToken deployed to:", tokenAddress);
+  const trustLayer = await hre.ethers.deployContract("TrustLayer");
 
-  const Crowdfunding = await hre.ethers.getContractFactory("MilestoneCrowdfunding");
-  const crowdfunding = await Crowdfunding.deploy(tokenAddress);
-  await crowdfunding.waitForDeployment();
-  const crowdfundingAddress = await crowdfunding.getAddress();
-  console.log("2. MilestoneCrowdfunding deployed to:", crowdfundingAddress);
+  await trustLayer.waitForDeployment();
 
-  await token.transferOwnership(crowdfundingAddress);
-  console.log("3. Ownership of Token transferred to Crowdfunding contract");
+  console.log(
+    `TrustLayer Factory deployed to: ${trustLayer.target}`
+  );
+
+  const tokenAddress = await trustLayer.token();
+  console.log(`RewardToken deployed to: ${tokenAddress}`);
+
+  // Optional: Create a detailed campaign validation
+  /*
+  const [deployer] = await hre.ethers.getSigners();
+  console.log("Creating a test campaign...");
+  const tx = await trustLayer.createCampaign(
+      "Test Campaign",
+      "A test description",
+      hre.ethers.parseEther("10"), // 10 ETH goal
+      3600 * 24 * 30 // 30 days
+  );
+  await tx.wait();
   
-  console.log("\n--- DEPLOYMENT FINISHED ---");
-  console.log("TOKEN:", tokenAddress);
-  console.log("CROWDFUNDING:", crowdfundingAddress);
+  const campaigns = await trustLayer.getDeployedCampaigns();
+  console.log("Deployed Campaigns:", campaigns);
+  */
 }
 
 main().catch((error) => {

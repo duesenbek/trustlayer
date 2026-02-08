@@ -1,0 +1,283 @@
+:root {
+    --bg-color: #050505;
+    --card-bg: #0A0A0A;
+    --card-border: #333333;
+    --primary: #4FD1C5;
+    --primary-dim: rgba(79, 209, 197, 0.1);
+    --accent: #7F9CF5;
+    --text-main: #F3F4F6;
+    --text-muted: #6B7280;
+    --danger: #EF4444;
+    --success: #10B981;
+    --warning: #F59E0B;
+    --font-family: 'Roboto Mono', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: white;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.05em;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+p {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    font-size: 0.95rem;
+}
+
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.logo {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.logo span {
+    border: 1px solid var(--text-muted);
+    padding: 2px 6px;
+}
+
+nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-left: 2.5rem;
+    font-weight: 400;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    cursor: pointer;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0;
+
+    font-weight: 500;
+    font-family: var(--font-family);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+}
+
+.btn-primary {
+    background: var(--text-main);
+    color: var(--bg-color);
+    border-color: var(--text-main);
+}
+
+.btn-primary:hover {
+    background: transparent;
+    color: var(--text-main);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--card-border);
+    color: var(--text-muted);
+}
+
+.btn-outline:hover {
+    border-color: var(--text-main);
+    color: var(--text-main);
+}
+
+
+.card {
+    background-color: transparent;
+    border: 1px solid var(--card-border);
+    border-radius: 0;
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+}
+
+.card:hover {
+    border-color: var(--primary);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 2px;
+
+    background-color: var(--card-border);
+    border-radius: 0;
+    margin: 1.5rem 0 0.5rem 0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 0;
+}
+
+.status-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+    border: 1px solid;
+    letter-spacing: 0.05em;
+}
+
+.status-locked {
+    border-color: var(--card-border);
+    color: var(--text-muted);
+}
+
+.status-voting {
+    border-color: var(--warning);
+    color: var(--warning);
+    background: rgba(245, 158, 11, 0.05);
+}
+
+.status-released {
+    border-color: var(--success);
+    color: var(--success);
+    background: rgba(16, 185, 129, 0.05);
+}
+
+
+.view-section {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.view-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+.hero {
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--card-border);
+    margin-bottom: 4rem;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.campaigns-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--card-border);
+
+    border: 1px solid var(--card-border);
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background: var(--bg-color);
+    padding: 1.5rem;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text-main);
+    font-family: var(--font-family);
+}
+
+.milestone-item {
+    border: 1px solid var(--card-border);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
